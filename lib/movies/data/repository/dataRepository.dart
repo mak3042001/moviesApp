@@ -1,5 +1,4 @@
 import 'package:dartz/dartz.dart';
-import 'package:movies_app/core/network/errorResponseModel.dart';
 import 'package:movies_app/error/exception.dart';
 import 'package:movies_app/error/failure.dart';
 import 'package:movies_app/movies/data/datasource/moviesRemoteDataSource.dart';
@@ -14,7 +13,6 @@ class DataRepository implements DomainRepository{
   @override
   Future<Either<Failure , List<Movies>>> getNowPlaying() async {
     final result = await baseMoviesRemoteDataSource.getNowPlaying();
-
     try{
       return Right(result);
     }on ServerException catch(e){
