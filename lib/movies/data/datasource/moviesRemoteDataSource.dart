@@ -19,7 +19,7 @@ class MoviesRemoteDataSource implements BaseMoviesRemoteDataSource {
       ConstantApp.nowPlayingApi,
     );
     if (response.statusCode == 200) {
-      return List<MoviesModel>.from((response.data['results'] as List).map(
+      return List<MoviesModel>.from((response.data["results"] as List).map(
         (e) => MoviesModel.fromJson(e),
       ));
     } else {

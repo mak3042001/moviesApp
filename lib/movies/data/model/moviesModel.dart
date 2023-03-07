@@ -12,16 +12,14 @@ class MoviesModel extends Movies {
     required super.voteAverage,
   });
 
-  factory MoviesModel.fromJson(Map<String, dynamic> json) {
-    return MoviesModel(
-        backdropPath: json['backdrop_path'],
-        originalLanguage: json['original_language'],
-        title: json['title'],
-        overview: json['overview'],
-        releaseDate: json['release_date'],
-        genreIds: List<int>.from(json['genre_ids'].map((e)=> e)),
-        id: json['id'],
-        voteAverage: json['vote_average'].toDouble(),
-    );
-  }
+  factory MoviesModel.fromJson(Map<String, dynamic> json) => MoviesModel(
+        backdropPath: json["backdrop_path"],
+        originalLanguage: json["original_language"],
+        title: json["title"],
+        overview: json["overview"],
+        releaseDate: json["release_date"],
+        genreIds: List<int>.from(json["genre_ids"].map((e) => e)),
+        id: json["id"],
+        voteAverage: json["vote_average"].toDouble(),
+      );
 }

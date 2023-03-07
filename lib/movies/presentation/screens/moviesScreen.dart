@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:movies_app/movies/data/datasource/moviesRemoteDataSource.dart';
 import 'package:movies_app/movies/data/repository/dataRepository.dart';
 import 'package:movies_app/movies/domain/repository/domainRepository.dart';
-import 'package:movies_app/movies/domain/usecase/getNowPlayingMoviesUsecase.dart';
 import 'package:movies_app/movies/domain/usecase/getPopularMoviesUsecase.dart';
 
 class MoviesScreen extends StatefulWidget {
@@ -20,8 +19,8 @@ class _MoviesScreenState extends State<MoviesScreen> {
 
   @override
   void initState() {
-    super.initState();
     _getData();
+    super.initState();
   }
 
   void _getData() async {
