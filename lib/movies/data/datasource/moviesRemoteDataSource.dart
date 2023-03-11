@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:movies_app/core/network/errorResponseModel.dart';
-import 'package:movies_app/core/utills/constant.dart';
+import 'package:movies_app/core/utils/constant.dart';
 import 'package:movies_app/error/exception.dart';
 import 'package:movies_app/movies/data/model/moviesModel.dart';
 
