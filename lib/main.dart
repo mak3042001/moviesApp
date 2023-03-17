@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:movies_app/core/services/servicesLocated.dart';
 import 'package:movies_app/movies/presentation/screens/moviesScreen.dart';
 
 void main() {
+  ServicesLocated().init();
   runApp(const MyApp());
 }
 
