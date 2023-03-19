@@ -88,7 +88,7 @@ class MainMoviesScreen extends StatelessWidget {
                                 Padding(
                                   padding: const EdgeInsets.only(bottom: 16.0),
                                   child: Text(
-                                    item.title!,
+                                    item.title,
                                     textAlign: TextAlign.center,
                                     style: const TextStyle(
                                       fontSize: 24,
