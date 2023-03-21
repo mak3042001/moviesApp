@@ -1,17 +1,12 @@
-import 'package:animate_do/animate_do.dart';
-import 'package:cached_network_image/cached_network_image.dart';
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:movies_app/core/services/servicesLocated.dart';
-import 'package:movies_app/core/utils/constant.dart';
-import 'package:movies_app/core/utils/dummy.dart';
 import 'package:movies_app/movies/presentation/componentes/nowPlayingComponent.dart';
 import 'package:movies_app/movies/presentation/componentes/popularComponent.dart';
 import 'package:movies_app/movies/presentation/componentes/topRatedComponent.dart';
 import 'package:movies_app/movies/presentation/controllers/moviesBloc.dart';
-import 'package:shimmer/shimmer.dart';
+import 'package:movies_app/movies/presentation/controllers/moviesEvents.dart';
 
 class MainMoviesScreen extends StatelessWidget {
   const MainMoviesScreen({Key? key}) : super(key: key);
@@ -20,7 +15,7 @@ class MainMoviesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     print("build");
     return BlocProvider(
-      create: (BuildContext context) => getIt<MoviesBloc>(),
+      create: (BuildContext context) => getIt<MoviesBloc>()..add(GetNowPlayingEvents()),
       child: Scaffold(
         backgroundColor: Colors.grey.shade800,
         body: SingleChildScrollView(

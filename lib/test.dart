@@ -12,8 +12,8 @@ class Test extends StatelessWidget {
           onPressed: (){
             Navigator.push(context, MaterialPageRoute(builder: (context) => const MainMoviesScreen()));
           },
-          child: const Text(
-            "navigator",
+          child: Text(
+            "navigator".toUpperCase(),
           ),
         ),
       ),
