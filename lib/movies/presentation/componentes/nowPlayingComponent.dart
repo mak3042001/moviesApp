@@ -7,6 +7,7 @@ import 'package:movies_app/core/utils/constant.dart';
 import 'package:movies_app/core/utils/requestState.dart';
 import 'package:movies_app/movies/presentation/controllers/moviesBloc.dart';
 import 'package:movies_app/movies/presentation/controllers/moviesState.dart';
+import 'package:shimmer/shimmer.dart';
 
 class NowPlayingComponent extends StatelessWidget {
   const NowPlayingComponent({Key? key}) : super(key: key);
@@ -18,9 +19,21 @@ class NowPlayingComponent extends StatelessWidget {
         print("BlocBuilder NowPlayingComponent");
         switch (state.nowPlayingState) {
           case RequestState.loading:
-            return const SizedBox(
+            return Shimmer.fromColors(
+              baseColor: Colors.grey[850]!,
+              highlightColor: Colors.grey[800]!,
+              child: Container(
                 height: 400.0,
-                child: Center(child: CircularProgressIndicator()));
+                width: double.infinity,
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  borderRadius: BorderRadius.circular(8.0),
+                ),
+              ),
+            );
+            // return const SizedBox(
+            //     height: 400.0,
+            //     child: Center(child: CircularProgressIndicator()));
           case RequestState.loaded:
             return FadeIn(
               duration: const Duration(milliseconds: 500),
