@@ -15,7 +15,10 @@ class MainMoviesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     print("build");
     return BlocProvider(
-      create: (BuildContext context) => getIt<MoviesBloc>()..add(GetNowPlayingEvents())..add(GetPopularEvents())..add(GetTopRatedEvents()),
+      create: (BuildContext context) => getIt<MoviesBloc>()
+        ..add(GetNowPlayingEvents())
+        ..add(GetPopularEvents())
+        ..add(GetTopRatedEvents()),
       child: Scaffold(
         backgroundColor: Colors.grey.shade800,
         body: SingleChildScrollView(
@@ -35,6 +38,7 @@ class MainMoviesScreen extends StatelessWidget {
                         fontSize: 19,
                         fontWeight: FontWeight.w500,
                         letterSpacing: 0.15,
+                        color: Colors.white,
                       ),
                     ),
                     InkWell(
@@ -45,10 +49,16 @@ class MainMoviesScreen extends StatelessWidget {
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
                           children: const [
-                            Text('See More'),
+                            Text(
+                              'See More',
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
                             Icon(
                               Icons.arrow_forward_ios,
                               size: 16.0,
+                              color: Colors.white,
                             )
                           ],
                         ),
@@ -74,6 +84,7 @@ class MainMoviesScreen extends StatelessWidget {
                         fontSize: 19,
                         fontWeight: FontWeight.w500,
                         letterSpacing: 0.15,
+                        color: Colors.white,
                       ),
                     ),
                     InkWell(
@@ -84,10 +95,16 @@ class MainMoviesScreen extends StatelessWidget {
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
                           children: const [
-                            Text('See More'),
+                            Text(
+                              'See More',
+                              style: TextStyle(
+                                color: Colors.white,
+                              ),
+                            ),
                             Icon(
                               Icons.arrow_forward_ios,
                               size: 16.0,
+                              color: Colors.white,
                             )
                           ],
                         ),

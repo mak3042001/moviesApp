@@ -96,6 +96,7 @@ class NowPlayingComponent extends StatelessWidget {
                                         'Now Playing'.toUpperCase(),
                                         style: const TextStyle(
                                           fontSize: 16.0,
+                                          color: Colors.white,
                                         ),
                                       ),
                                     ],
@@ -108,6 +109,7 @@ class NowPlayingComponent extends StatelessWidget {
                                     textAlign: TextAlign.center,
                                     style: const TextStyle(
                                       fontSize: 24,
+                                      color: Colors.white,
                                     ),
                                   ),
                                 ),
