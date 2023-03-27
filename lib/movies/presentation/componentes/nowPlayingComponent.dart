@@ -15,6 +15,7 @@ class NowPlayingComponent extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<MoviesBloc, MoviesState>(
+      buildWhen: (previous, current) => previous.nowPlayingState != current.nowPlayingState,
       builder: (context, state) {
         print("BlocBuilder NowPlayingComponent");
         switch (state.nowPlayingState) {
@@ -31,9 +32,6 @@ class NowPlayingComponent extends StatelessWidget {
                 ),
               ),
             );
-            // return const SizedBox(
-            //     height: 400.0,
-            //     child: Center(child: CircularProgressIndicator()));
           case RequestState.loaded:
             return FadeIn(
               duration: const Duration(milliseconds: 500),
