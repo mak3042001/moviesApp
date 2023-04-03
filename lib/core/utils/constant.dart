@@ -8,4 +8,7 @@ class ConstantApp{
   static String imageUrl(String path){
     return "$baseImageUrl$path";
   }
+  static String detailsApi(int moviesId){
+    return "$baseUrl/movie/$moviesId?api_key=$apiKey";
+  }
 }

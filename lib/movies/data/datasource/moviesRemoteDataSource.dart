@@ -2,7 +2,9 @@ import 'package:dio/dio.dart';
 import 'package:movies_app/core/network/errorResponseModel.dart';
 import 'package:movies_app/core/utils/constant.dart';
 import 'package:movies_app/core/error/exception.dart';
+import 'package:movies_app/movies/data/model/moviesDetailsModel.dart';
 import 'package:movies_app/movies/data/model/moviesModel.dart';
+import 'package:movies_app/movies/domain/usecase/getMoviesDetails.dart';
 
 abstract class BaseMoviesRemoteDataSource {
   Future<List<MoviesModel>> getNowPlaying();
@@ -10,6 +12,8 @@ abstract class BaseMoviesRemoteDataSource {
   Future<List<MoviesModel>> getPopular();
 
   Future<List<MoviesModel>> getTopRated();
+
+  Future<MoviesDetailsModel> getMoviesDetails(MoviesDetailsParameters parameters);
 }
 
 class MoviesRemoteDataSource implements BaseMoviesRemoteDataSource {
@@ -60,6 +64,21 @@ class MoviesRemoteDataSource implements BaseMoviesRemoteDataSource {
       throw ServerException(
         remoteErrorResponseModel:
             RemoteErrorResponseModel.fromJson(response.data),
+      );
+    }
+  }
+
+  @override
+  Future<MoviesDetailsModel> getMoviesDetails(MoviesDetailsParameters parameters) async {
+    final response = await Dio().get(
+      ConstantApp.detailsApi(parameters as int),
+    );
+    if (response.statusCode == 200) {
+      return MoviesDetailsModel.fromJson(response.data);
+    } else {
+      throw ServerException(
+        remoteErrorResponseModel:
+        RemoteErrorResponseModel.fromJson(response.data),
       );
     }
   }
