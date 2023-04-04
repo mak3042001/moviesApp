@@ -7,6 +7,7 @@ import 'package:movies_app/core/utils/constant.dart';
 import 'package:movies_app/core/utils/requestState.dart';
 import 'package:movies_app/movies/presentation/controllers/moviesBloc.dart';
 import 'package:movies_app/movies/presentation/controllers/moviesState.dart';
+import 'package:movies_app/movies/presentation/screens/movie_detail_screen.dart';
 import 'package:shimmer/shimmer.dart';
 
 class NowPlayingComponent extends StatelessWidget {
@@ -46,7 +47,7 @@ class NowPlayingComponent extends StatelessWidget {
                     return GestureDetector(
                       key: const Key('openMovieMinimalDetail'),
                       onTap: () {
-                        /// TODO : NAVIGATE TO MOVIE DETAILS
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> MovieDetailScreen(id: item.id,)));
                       },
                       child: Stack(
                         children: [

@@ -11,4 +11,9 @@ class ConstantApp{
   static String detailsApi(int moviesId){
     return "$baseUrl/movie/$moviesId?api_key=$apiKey";
   }
+  static String recommendationApi(int moviesId){
+    return "$baseUrl/movie/$moviesId/recommendations?api_key=$apiKey";
+  }
 }
+
+//https://api.themoviedb.org/3/movie/980078?api_key=0ff66932018537aeb7d73ef622210d41

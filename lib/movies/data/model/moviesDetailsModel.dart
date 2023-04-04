@@ -21,7 +21,7 @@ class MoviesDetailsModel extends MoviesDetails {
       runtime: json["runtime"],
       overview: json["overview"],
       id: json["id"],
-      voteAverage: json["vote_average"],
+      voteAverage: json["vote_average"].toDouble(),
     );
   }
 }

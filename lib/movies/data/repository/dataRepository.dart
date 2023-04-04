@@ -4,8 +4,10 @@ import 'package:movies_app/core/error/failure.dart';
 import 'package:movies_app/movies/data/datasource/moviesRemoteDataSource.dart';
 import 'package:movies_app/movies/domain/entities/movies.dart';
 import 'package:movies_app/movies/domain/entities/movies_details.dart';
+import 'package:movies_app/movies/domain/entities/recommendation.dart';
 import 'package:movies_app/movies/domain/repository/domainRepository.dart';
 import 'package:movies_app/movies/domain/usecase/getMoviesDetails.dart';
+import 'package:movies_app/movies/domain/usecase/getRecommendation.dart';
 
 class DataRepository implements DomainRepository{
   final BaseMoviesRemoteDataSource baseMoviesRemoteDataSource;
@@ -47,6 +49,16 @@ class DataRepository implements DomainRepository{
   @override
   Future<Either<Failure, MoviesDetails>> getMoviesDetails(MoviesDetailsParameters parameters) async {
     final result = await baseMoviesRemoteDataSource.getMoviesDetails(parameters);
+    try{
+      return Right(result);
+    }on ServerException catch(e){
+      return Left(ServerFailure(e.remoteErrorResponseModel.statusMessage));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<Recommendation>>> getMoviesRecommendation(RecommendationParameters parameters) async {
+    final result = await baseMoviesRemoteDataSource.getMoviesRecommendation(parameters);
     try{
       return Right(result);
     }on ServerException catch(e){

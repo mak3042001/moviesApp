@@ -4,7 +4,9 @@ import 'package:movies_app/core/utils/constant.dart';
 import 'package:movies_app/core/error/exception.dart';
 import 'package:movies_app/movies/data/model/moviesDetailsModel.dart';
 import 'package:movies_app/movies/data/model/moviesModel.dart';
+import 'package:movies_app/movies/data/model/moviesRecommendationModel.dart';
 import 'package:movies_app/movies/domain/usecase/getMoviesDetails.dart';
+import 'package:movies_app/movies/domain/usecase/getRecommendation.dart';
 
 abstract class BaseMoviesRemoteDataSource {
   Future<List<MoviesModel>> getNowPlaying();
@@ -13,7 +15,11 @@ abstract class BaseMoviesRemoteDataSource {
 
   Future<List<MoviesModel>> getTopRated();
 
-  Future<MoviesDetailsModel> getMoviesDetails(MoviesDetailsParameters parameters);
+  Future<MoviesDetailsModel> getMoviesDetails(
+      MoviesDetailsParameters parameters);
+
+  Future<List<MoviesRecommendationModel>> getMoviesRecommendation(
+      RecommendationParameters parameters);
 }
 
 class MoviesRemoteDataSource implements BaseMoviesRemoteDataSource {
@@ -69,16 +75,36 @@ class MoviesRemoteDataSource implements BaseMoviesRemoteDataSource {
   }
 
   @override
-  Future<MoviesDetailsModel> getMoviesDetails(MoviesDetailsParameters parameters) async {
+  Future<MoviesDetailsModel> getMoviesDetails(
+      MoviesDetailsParameters parameters) async {
     final response = await Dio().get(
-      ConstantApp.detailsApi(parameters as int),
+      ConstantApp.detailsApi(parameters.id),
     );
     if (response.statusCode == 200) {
       return MoviesDetailsModel.fromJson(response.data);
     } else {
       throw ServerException(
         remoteErrorResponseModel:
-        RemoteErrorResponseModel.fromJson(response.data),
+            RemoteErrorResponseModel.fromJson(response.data),
+      );
+    }
+  }
+
+  @override
+  Future<List<MoviesRecommendationModel>> getMoviesRecommendation(
+      RecommendationParameters parameters) async {
+    final response = await Dio().get(
+      ConstantApp.recommendationApi(parameters.id),
+    );
+    if (response.statusCode == 200) {
+      return List<MoviesRecommendationModel>.from(
+          (response.data['results'] as List).map(
+        (e) => MoviesRecommendationModel.fromJson(e),
+      ));
+    } else {
+      throw ServerException(
+        remoteErrorResponseModel:
+            RemoteErrorResponseModel.fromJson(response.data),
       );
     }
   }

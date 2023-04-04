@@ -23,8 +23,7 @@ class MoviesDetails extends Equatable {
   });
 
   @override
-  // TODO: implement props
-  List<Object?> get props => [
+  List<Object> get props => [
     backdropPath,
     overview,
     id,
