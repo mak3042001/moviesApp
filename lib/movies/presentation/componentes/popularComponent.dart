@@ -6,6 +6,7 @@ import 'package:movies_app/core/utils/constant.dart';
 import 'package:movies_app/core/utils/requestState.dart';
 import 'package:movies_app/movies/presentation/controllers/moviesBloc.dart';
 import 'package:movies_app/movies/presentation/controllers/moviesState.dart';
+import 'package:movies_app/movies/presentation/screens/movie_detail_screen.dart';
 import 'package:shimmer/shimmer.dart';
 
 class PopularComponent extends StatelessWidget {
@@ -18,7 +19,6 @@ class PopularComponent extends StatelessWidget {
       builder: (context, state) {
         print("BlocBuilder PopularComponent");
         switch(state.popularState){
-
           case RequestState.loading:
             return Shimmer.fromColors(
               baseColor: Colors.grey[850]!,
@@ -48,7 +48,7 @@ class PopularComponent extends StatelessWidget {
                     padding: const EdgeInsets.only(right: 8.0),
                     child: InkWell(
                       onTap: () {
-                        /// TODO : NAVIGATE TO  MOVIE DETAILS
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=> MovieDetailScreen(id: movie.id,)));
                       },
                       child: ClipRRect(
                         borderRadius:

@@ -18,7 +18,6 @@ class NowPlayingComponent extends StatelessWidget {
     return BlocBuilder<MoviesBloc, MoviesState>(
       buildWhen: (previous, current) => previous.nowPlayingState != current.nowPlayingState,
       builder: (context, state) {
-        print("BlocBuilder NowPlayingComponent");
         switch (state.nowPlayingState) {
           case RequestState.loading:
             return Shimmer.fromColors(
